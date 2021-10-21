@@ -6,14 +6,24 @@ import {
   Input,
   Center,
   Image,
-  Flex,
 } from "@chakra-ui/react";
+import { fetchData } from "../../features/citySlice";
 import { SearchIcon } from "@chakra-ui/icons";
 import { colors } from "../../styles/colors";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Cities = () => {
+  const dispatch = useDispatch();
+  const cityInformations = useSelector((state) => state.cities.cityInformation);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
   return (
     <>
+      {cityInformations.map((city) => city.Name)}
       <Box height="100vh" width="100%" bg={colors.backgroundMain}>
         <Center>
           <Box paddingTop={10}>
