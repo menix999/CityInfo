@@ -23,6 +23,7 @@ const Cities = () => {
       ) {
         return city;
       }
+      return null;
     })
     .map((city) => {
       return (
