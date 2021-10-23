@@ -5,7 +5,6 @@ export const fetchData = createAsyncThunk("cities/fetchData", async () => {
   const response = await axios.get(
     `https://616dfd65a83a850017caa7c1.mockapi.io/cities`
   );
-  console.log(response);
   return response.data;
 });
 
@@ -24,7 +23,6 @@ export const citySlice = createSlice({
     [fetchData.fulfilled]: (state, action) => {
       state.status = "success";
       state.cityInformation = action.payload;
-      console.log(action.payload);
     },
     [fetchData.rejected]: (state, action) => {
       state.status = "failed";

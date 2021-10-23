@@ -1,19 +1,12 @@
-import React from "react";
-import {
-  Box,
-  InputGroup,
-  InputLeftElement,
-  Input,
-  Center,
-  Image,
-} from "@chakra-ui/react";
+import React, { useState } from "react";
 import { fetchData } from "../../features/citySlice";
-import { SearchIcon } from "@chakra-ui/icons";
-import { colors } from "../../styles/colors";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import * as Styled from "./Cities.styles";
 
 const Cities = () => {
+  const [searchValue, setSearchValue] = useState("");
+
   const dispatch = useDispatch();
   const cityInformations = useSelector((state) => state.cities.cityInformation);
 
@@ -21,56 +14,40 @@ const Cities = () => {
     dispatch(fetchData());
   }, [dispatch]);
 
+  const cityInformationTiles = cityInformations
+    .filter((city) => {
+      if (searchValue === "") {
+        return city;
+      } else if (
+        city.Name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+      ) {
+        return city;
+      }
+    })
+    .map((city) => {
+      return (
+        <>
+          <Styled.SingleTileCard key={city.id}>
+            <Styled.ImagePhotoToCard></Styled.ImagePhotoToCard>
+            {city.Name}
+          </Styled.SingleTileCard>
+        </>
+      );
+    });
+
   return (
     <>
-      {cityInformations.map((city) => city.Name)}
-      <Box height="100vh" width="100%" bg={colors.backgroundMain}>
-        <Center>
-          <Box paddingTop={10}>
-            <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<SearchIcon color={colors.iconColor} />}
-              />
-              <Input
-                _placeholder={{ color: `${colors.whiteText}` }}
-                placeholder="Search"
-                variant="outline"
-                color={colors.whiteText}
-                bg={colors.backgroundButton}
-                borderColor={colors.backgroundButton}
-                width="20vh"
-              />
-            </InputGroup>
-          </Box>
-        </Center>
+      <Styled.GlobalStyle />
+      <Styled.SearchButtonContainer>
+        <Styled.ModifiedSearchInput
+          placeholder="Search..."
+          onChange={(e) => setSearchValue(e.target.value)}
+        ></Styled.ModifiedSearchInput>
+      </Styled.SearchButtonContainer>
 
-        <Center>
-          <Box
-            width="100vh"
-            maxWidth="100vh"
-            height="70vh"
-            marginTop={24}
-            display="flex"
-            flexWrap="wrap"
-            paddingLeft="24"
-          >
-            <Box
-              width="200px"
-              height="200px"
-              bg="green"
-              borderRadius="8"
-              margin={8}
-              flexWrap="wrap"
-            >
-              <Image
-                src="https://source.unsplash.com/user/c_v_r"
-                borderRadius="8"
-              />
-            </Box>
-          </Box>
-        </Center>
-      </Box>
+      <Styled.CitiesTilesCardContainer>
+        {cityInformationTiles.slice(0, 9)}
+      </Styled.CitiesTilesCardContainer>
     </>
   );
 };
