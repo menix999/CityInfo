@@ -11,17 +11,18 @@ export const GlobalStyle = createGlobalStyle`
 const load = keyframes`
   from {
     transform: scale(0.9);
+    opacity: 0;
   }
 
   to {
     transform: scale(1);
+    opacity: 1;
   }
 `;
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  margin: auto;
 `;
 
 export const SearchButtonContainer = styled.div`
@@ -47,6 +48,13 @@ export const CitiesTilesCardContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   animation: ${load} 1s;
+
+  /* animation: ${({ changee }) => {
+    if (changee === true) {
+      return load;
+    }
+    return changee;
+  }}; */
 `;
 
 export const SingleTileCard = styled.div`
@@ -74,6 +82,35 @@ export const ImagePhotoToCard = styled.div`
 `;
 
 export const ModifiedSearchInput = styled(SearchInput)`
-  background-color: ${colors.backgroundButton};
+  background-color: ${colors.secondBackgroundButton};
   margin-top: 32px;
+`;
+
+export const PaginateContainer = styled.div`
+  margin-top: 130px;
+
+  .paginationContainer {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+
+  .paginationContainer a {
+    padding: 8px;
+    margin: 8px;
+    border: 1px solid ${colors.borderColor};
+    cursor: pointer;
+    color: ${colors.whiteText};
+    border-radius: 8px;
+    background-color: ${colors.secondBackgroundButton};
+  }
+
+  .paginationActive a {
+    background-color: ${colors.backgroundButton};
+  }
+
+  .paginationContainer a:hover {
+    background-color: ${colors.backgroundButton};
+    transition: 0.3s;
+  }
 `;

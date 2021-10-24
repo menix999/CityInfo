@@ -3,9 +3,12 @@ import { fetchData } from "../../features/citySlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as Styled from "./Cities.styles";
+import ReactPaginate from "react-paginate";
 
 const Cities = () => {
   const [searchValue, setSearchValue] = useState("");
+  const [pageNumber, setPageNumber] = useState(0);
+  const [zmiana, setZmiana] = useState(false);
 
   const dispatch = useDispatch();
   const cityInformations = useSelector((state) => state.cities.cityInformation);
@@ -13,6 +16,10 @@ const Cities = () => {
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
+
+  const tilesDiplayed = 9;
+  const pageVisited = pageNumber * tilesDiplayed;
+  const pageCount = Math.ceil(cityInformations.length / tilesDiplayed);
 
   const cityInformationTiles = cityInformations
     .filter((city) => {
@@ -36,19 +43,43 @@ const Cities = () => {
       );
     });
 
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+    setZmiana((prevValue) => !prevValue);
+  };
+
+  console.log(zmiana);
+
   return (
     <>
       <Styled.GlobalStyle />
-      <Styled.SearchButtonContainer>
-        <Styled.ModifiedSearchInput
-          placeholder="Search..."
-          onChange={(e) => setSearchValue(e.target.value)}
-        ></Styled.ModifiedSearchInput>
-      </Styled.SearchButtonContainer>
 
-      <Styled.CitiesTilesCardContainer>
-        {cityInformationTiles.slice(0, 9)}
-      </Styled.CitiesTilesCardContainer>
+      <Styled.Container>
+        <Styled.SearchButtonContainer>
+          <Styled.ModifiedSearchInput
+            placeholder="Search..."
+            onChange={(e) => setSearchValue(e.target.value)}
+          ></Styled.ModifiedSearchInput>
+        </Styled.SearchButtonContainer>
+
+        <Styled.CitiesTilesCardContainer changee={zmiana}>
+          {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
+        </Styled.CitiesTilesCardContainer>
+
+        <Styled.PaginateContainer changee={zmiana}>
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={"paginationContainer"}
+            previousLinkClassName={"previousButton"}
+            nextLinkClassName={"nextButton"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
+          />
+        </Styled.PaginateContainer>
+      </Styled.Container>
     </>
   );
 };
