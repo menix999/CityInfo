@@ -21,40 +21,33 @@ const load = keyframes`
 `;
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
 `;
 
 export const SearchButtonContainer = styled.div`
-  width: 100%;
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
   background-color: ${colors.backgroundMain};
-  text-align: center;
+  margin-top: 32px;
 `;
 
-export const SearchButton = styled.button`
-  width: 100px;
-  height: 30px;
-  margin-top: 24px;
+export const ModifiedSearchInput = styled(SearchInput)`
+  background-color: ${colors.secondBackgroundButton};
 `;
 
 export const CitiesTilesCardContainer = styled.div`
-  width: 100vh;
-  height: 70vh;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100vh;
+  margin-top: 24px;
+  margin-left: auto;
+  margin-right: auto;
   animation: ${load} 1s;
-
-  /* animation: ${({ changee }) => {
-    if (changee === true) {
-      return load;
-    }
-    return changee;
-  }}; */
 `;
 
 export const SingleTileCard = styled.div`
@@ -73,22 +66,14 @@ export const SingleTileCard = styled.div`
   }
 `;
 
-export const ImagePhotoToCard = styled.div`
+export const ImagePhotoToCard = styled.img`
   width: 200px;
   height: 160px;
   border-radius: 8px;
   margin-bottom: 8px;
-  background-image: url("http://placeimg.com/640/480/city");
-`;
-
-export const ModifiedSearchInput = styled(SearchInput)`
-  background-color: ${colors.secondBackgroundButton};
-  margin-top: 32px;
 `;
 
 export const PaginateContainer = styled.div`
-  margin-top: 130px;
-
   .paginationContainer {
     display: flex;
     justify-content: center;

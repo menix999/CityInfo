@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as Styled from "./Cities.styles";
 import ReactPaginate from "react-paginate";
+import { images } from "../../app/citiesPhotos/citiesPhotos";
 
 const Cities = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -32,11 +33,11 @@ const Cities = () => {
       }
       return null;
     })
-    .map((city) => {
+    .map((city, numberImage) => {
       return (
         <>
           <Styled.SingleTileCard key={city.id}>
-            <Styled.ImagePhotoToCard></Styled.ImagePhotoToCard>
+            <Styled.ImagePhotoToCard src={images[city.id]} />
             {city.Name}
           </Styled.SingleTileCard>
         </>
@@ -47,8 +48,6 @@ const Cities = () => {
     setPageNumber(selected);
     setZmiana((prevValue) => !prevValue);
   };
-
-  console.log(zmiana);
 
   return (
     <>
@@ -65,21 +64,21 @@ const Cities = () => {
         <Styled.CitiesTilesCardContainer changee={zmiana}>
           {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
         </Styled.CitiesTilesCardContainer>
-
-        <Styled.PaginateContainer changee={zmiana}>
-          <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            pageCount={pageCount}
-            onPageChange={changePage}
-            containerClassName={"paginationContainer"}
-            previousLinkClassName={"previousButton"}
-            nextLinkClassName={"nextButton"}
-            disabledClassName={"paginationDisabled"}
-            activeClassName={"paginationActive"}
-          />
-        </Styled.PaginateContainer>
       </Styled.Container>
+
+      <Styled.PaginateContainer>
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationContainer"}
+          previousLinkClassName={"previousButton"}
+          nextLinkClassName={"nextButton"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+        />
+      </Styled.PaginateContainer>
     </>
   );
 };

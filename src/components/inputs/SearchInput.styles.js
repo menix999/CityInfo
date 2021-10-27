@@ -13,6 +13,7 @@ export const SearchInput = styled.input`
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   box-shadow: -1px 0.5px 0.5px black;
+  color: ${colors.whiteText};
   ::placeholder {
     color: ${colors.whiteText};
   }
