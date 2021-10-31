@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Styled from "./SingleTileDisplay.styles";
 import { useEffect } from "react";
 import {
@@ -16,7 +16,7 @@ const SingleTileDisplay = () => {
 
   useEffect(() => {
     dispatch(fetchSingleData(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   console.log(detailIdInformation);
 
