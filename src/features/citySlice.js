@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { apiUrl, endpoint } from "../api/api";
 
 export const fetchData = createAsyncThunk("cities/fetchData", async () => {
-  const response = await axios.get(
-    `https://616dfd65a83a850017caa7c1.mockapi.io/cities`
-  );
+  const response = await apiUrl.get(`${endpoint.cities}`);
   return response.data;
 });
 
@@ -30,6 +28,7 @@ export const citySlice = createSlice({
     },
   },
 });
-export const citySingleName = (state) => state.cities.cityName;
+
+export const citySingleName = (state) => state.cities.cityInformation;
 
 export default citySlice.reducer;

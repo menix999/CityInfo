@@ -1,10 +1,10 @@
-import "./App.css";
-import Cities from "./pages/Cities/Cities";
-
+import * as Styled from "./App.styles";
+import Routes from "./Routes/Routes";
 const App = () => {
   return (
     <>
-      <Cities />
+      <Styled.GlobalStyle />
+      <Routes />
     </>
   );
 };

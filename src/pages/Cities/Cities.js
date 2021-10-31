@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchData } from "../../features/citySlice";
+import { fetchData, citySingleName } from "../../features/citySlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as Styled from "./Cities.styles";
@@ -9,10 +9,9 @@ import { images } from "../../app/citiesPhotos/citiesPhotos";
 const Cities = () => {
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
-  const [zmiana, setZmiana] = useState(false);
 
   const dispatch = useDispatch();
-  const cityInformations = useSelector((state) => state.cities.cityInformation);
+  const cityInformations = useSelector(citySingleName);
 
   useEffect(() => {
     dispatch(fetchData());
@@ -33,26 +32,23 @@ const Cities = () => {
       }
       return null;
     })
-    .map((city, numberImage) => {
+    .map((city) => {
       return (
-        <>
-          <Styled.SingleTileCard key={city.id}>
+        <Styled.SingleTileCard key={city.id}>
+          <Styled.LinkToTiles to={`${city.id}`}>
             <Styled.ImagePhotoToCard src={images[city.id]} />
             {city.Name}
-          </Styled.SingleTileCard>
-        </>
+          </Styled.LinkToTiles>
+        </Styled.SingleTileCard>
       );
     });
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
-    setZmiana((prevValue) => !prevValue);
   };
 
   return (
     <>
-      <Styled.GlobalStyle />
-
       <Styled.Container>
         <Styled.SearchButtonContainer>
           <Styled.ModifiedSearchInput
@@ -61,11 +57,10 @@ const Cities = () => {
           ></Styled.ModifiedSearchInput>
         </Styled.SearchButtonContainer>
 
-        <Styled.CitiesTilesCardContainer changee={zmiana}>
+        <Styled.CitiesTilesCardContainer>
           {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
         </Styled.CitiesTilesCardContainer>
       </Styled.Container>
-
       <Styled.PaginateContainer>
         <ReactPaginate
           previousLabel={"Previous"}

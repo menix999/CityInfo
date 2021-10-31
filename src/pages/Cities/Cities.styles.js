@@ -1,14 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { createGlobalStyle } from "styled-components";
 import { colors } from "../../styles/colors";
 import { SearchInput } from "../../components/inputs/SearchInput.styles";
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${colors.backgroundMain};
-    }
-`;
+import { NavLink } from "react-router-dom";
 
-const load = keyframes`
+export const load = keyframes`
   from {
     transform: scale(0.9);
     opacity: 0;
@@ -43,7 +38,7 @@ export const CitiesTilesCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100vh;
+  width: 45vw;
   margin-top: 24px;
   margin-left: auto;
   margin-right: auto;
@@ -56,7 +51,6 @@ export const SingleTileCard = styled.div`
   background-color: ${colors.backgroundSquareView};
   border-radius: 8px;
   margin: 32px;
-  color: ${colors.whiteText};
   text-align: center;
   font-weight: bold;
   transition: 0.2s;
@@ -85,7 +79,6 @@ export const PaginateContainer = styled.div`
     margin: 8px;
     border: 1px solid ${colors.borderColor};
     cursor: pointer;
-    color: ${colors.whiteText};
     border-radius: 8px;
     background-color: ${colors.secondBackgroundButton};
   }
@@ -98,4 +91,11 @@ export const PaginateContainer = styled.div`
     background-color: ${colors.backgroundButton};
     transition: 0.3s;
   }
+`;
+
+// export const Paginate = styled(ReactPaginate)``;
+
+export const LinkToTiles = styled(NavLink)`
+  text-decoration: none;
+  color: ${colors.whiteText};
 `;
