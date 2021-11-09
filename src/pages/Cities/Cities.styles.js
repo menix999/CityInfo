@@ -93,8 +93,6 @@ export const PaginateContainer = styled.div`
   }
 `;
 
-// export const Paginate = styled(ReactPaginate)``;
-
 export const LinkToTiles = styled(NavLink)`
   text-decoration: none;
   color: ${colors.whiteText};

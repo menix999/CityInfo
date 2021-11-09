@@ -27,6 +27,8 @@ import Tokyo from "../../assets/images/Tokyo.jpg";
 import Toronto from "../../assets/images/Toronto.jpg";
 import Vienna from "../../assets/images/Vienna.jpg";
 
+import Weather from "../../assets/images/Weather.jpg";
+
 export const images = [
   null,
   Warsaw,
@@ -53,3 +55,5 @@ export const images = [
   Toronto,
   Vienna,
 ];
+
+export const weather = Weather;
