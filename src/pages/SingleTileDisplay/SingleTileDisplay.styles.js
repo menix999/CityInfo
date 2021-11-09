@@ -32,6 +32,7 @@ export const MainTileUp = styled.div`
 export const MainTileDown = styled(MainTileUp)`
   height: 50vh;
   border-radius: 0px 0px 32px 32px;
+  justify-content: center;
 `;
 
 export const CityPhoto = styled.img`
@@ -52,12 +53,27 @@ export const ContentSectionText = styled(ContentSection)`
 `;
 
 export const Title = styled.h1`
-  width: 100%;
+  flex-grow: 1;
   text-align: center;
   text-shadow: 2px 2px ${colors.backgroundMain};
+  margin-left: 80px;
 `;
 
-export const CountryTitle = styled(Title)``;
+export const ArrowImage = styled.img`
+  width: 70px;
+  height: 40px;
+  margin: 16px 16px 0 0;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+  }
+`;
+
+export const CountryTitle = styled(Title)`
+  width: 100%;
+  margin: 0;
+`;
 
 export const Description = styled.h3`
   display: flex;
@@ -72,7 +88,7 @@ export const WeatherContainer = styled.div`
   justify-content: flex-start;
   width: 30vh;
   background-image: url(${weather});
-  border-radius: 0px 32px 32px 32px;
+  border-radius: 32px 32px 32px 32px;
 `;
 
 export const IconSpace = styled.div`
@@ -86,9 +102,18 @@ export const IconSpace = styled.div`
 export const Icon = styled.img`
   height: 70px;
   width: 70px;
+  transition: 0.2s;
+  &:hover {
+    transform: scale(1.3);
+    transition: 0.2s;
+  }
 `;
 
-export const Temperature = styled(Title)``;
+export const Temperature = styled.h1`
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px ${colors.backgroundMain};
+`;
 
 export const WeatherInformation = styled.h3`
   width: 100%;
@@ -98,6 +123,6 @@ export const WeatherInformation = styled.h3`
   margin-left: 8px;
 `;
 
-export const Xd = styled.div`
+export const Fill = styled.div`
   height: 100%;
 `;

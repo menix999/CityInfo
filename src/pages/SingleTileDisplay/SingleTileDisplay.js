@@ -9,12 +9,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { images } from "../../app/citiesPhotos/citiesPhotos";
 import { weatherData, weatherDetailApi } from "../../features/weatherSlice";
+import { useHistory } from "react-router-dom";
+import arrow from "../../assets/images/ArrowGoBack.png";
 
 const SingleTileDisplay = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const detailIdInformation = useSelector(cityDetailInformation);
   const weatherDetailInformation = useSelector(weatherDetailApi);
+
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchSingleData(id));
@@ -24,6 +28,10 @@ const SingleTileDisplay = () => {
     if (!detailIdInformation.Name) return;
     dispatch(weatherData(detailIdInformation.Name));
   }, [detailIdInformation, dispatch]);
+
+  const goBack = () => {
+    history.push("/");
+  };
 
   const weather = weatherDetailInformation.weather;
   const icon = `http://openweathermap.org/img/w/${weather?.weather[0].icon}.png`;
@@ -36,6 +44,10 @@ const SingleTileDisplay = () => {
             <Styled.CityPhoto src={images[id]} />
             <Styled.ContentSectionText>
               <Styled.Title>{detailIdInformation.Name}</Styled.Title>
+              <Styled.ArrowImage
+                src={arrow}
+                onClick={goBack}
+              ></Styled.ArrowImage>
               <Styled.CountryTitle>
                 {detailIdInformation.Country}
               </Styled.CountryTitle>
@@ -61,7 +73,7 @@ const SingleTileDisplay = () => {
             <Styled.WeatherInformation>
               {`Wind speed: ${Math.ceil(weather?.wind.speed)} km/h`}
             </Styled.WeatherInformation>
-            <Styled.Xd />
+            <Styled.Fill />
           </Styled.WeatherContainer>
         </Styled.MainTileDown>
       </Styled.MainTileInformation>

@@ -19,8 +19,6 @@ const Cities = () => {
 
   const tilesDiplayed = 9;
   const pageVisited = pageNumber * tilesDiplayed;
-  const pageCount = Math.ceil(cityInformations.length / tilesDiplayed);
-
   const cityInformationTiles = cityInformations
     .filter((city) => {
       if (searchValue === "") {
@@ -42,11 +40,12 @@ const Cities = () => {
         </Styled.SingleTileCard>
       );
     });
+  const pageCount = Math.ceil(cityInformationTiles.length / tilesDiplayed);
+  // console.log(cityInformationTiles.length);
 
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
+  const changePage = (event) => {
+    setPageNumber(event.selected);
   };
-
   return (
     <>
       <Styled.GlobalStyle />
@@ -64,7 +63,6 @@ const Cities = () => {
       </Styled.Container>
       <Styled.PaginateContainer>
         <ReactPaginate
-          previousLabel={"Previous"}
           nextLabel={"Next"}
           pageCount={pageCount}
           onPageChange={changePage}
