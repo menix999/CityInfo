@@ -28,7 +28,6 @@ const SingleTileDisplay = () => {
   const weather = weatherDetailInformation.weather;
   const icon = `http://openweathermap.org/img/w/${weather?.weather[0].icon}.png`;
 
-  console.log(weather);
   return (
     <Styled.Container>
       <Styled.MainTileInformation>

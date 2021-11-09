@@ -2,6 +2,14 @@ import styled, { keyframes } from "styled-components";
 import { colors } from "../../styles/colors";
 import { SearchInput } from "../../components/inputs/SearchInput.styles";
 import { NavLink } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
+    body {
+        background-color: ${colors.backgroundMain};
+        color: ${colors.whiteText}
+    }
+`;
 
 export const load = keyframes`
   from {

@@ -8,6 +8,8 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: ${colors.backgroundMain};
+  color: ${colors.whiteText};
 `;
 
 export const MainTileInformation = styled.div`
@@ -28,7 +30,6 @@ export const MainTileUp = styled.div`
 `;
 
 export const MainTileDown = styled(MainTileUp)`
-  /* background-color: ${colors.borderColor}; */
   height: 50vh;
   border-radius: 0px 0px 32px 32px;
 `;

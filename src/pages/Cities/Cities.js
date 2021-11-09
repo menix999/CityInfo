@@ -49,6 +49,7 @@ const Cities = () => {
 
   return (
     <>
+      <Styled.GlobalStyle />
       <Styled.Container>
         <Styled.SearchButtonContainer>
           <Styled.ModifiedSearchInput
