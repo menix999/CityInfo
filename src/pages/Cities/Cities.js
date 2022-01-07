@@ -4,11 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as Styled from "./Cities.styles";
 import ReactPaginate from "react-paginate";
-import { images } from "../../app/citiesPhotos/citiesPhotos";
+import CityCards from "../../components/CityCards/CityCards";
 
 const Cities = () => {
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
+  const [inputValue, setInputValue] = useState("");
 
   const dispatch = useDispatch();
   const cityInformations = useSelector(citySingleName);
@@ -19,61 +20,62 @@ const Cities = () => {
 
   const tilesDiplayed = 9;
   const pageVisited = pageNumber * tilesDiplayed;
+
   const cityInformationTiles = cityInformations
     .filter((city) => {
-      if (searchValue === "") {
+      if (!searchValue) {
         return city;
-      } else if (
-        city.Name.toLowerCase().includes(searchValue.toLocaleLowerCase())
-      ) {
+      } else if (city.Name.toLowerCase().includes(searchValue.toLocaleLowerCase())) {
         return city;
       }
       return null;
     })
-    .map((city) => {
-      return (
-        <Styled.SingleTileCard key={city.id}>
-          <Styled.LinkToTiles to={`${city.id}`}>
-            <Styled.ImagePhotoToCard src={images[city.id]} />
-            {city.Name}
-          </Styled.LinkToTiles>
-        </Styled.SingleTileCard>
-      );
+    .map(({ id, Name }) => {
+      return <CityCards key={id} id={id} Name={Name}></CityCards>;
     });
   const pageCount = Math.ceil(cityInformationTiles.length / tilesDiplayed);
-  // console.log(cityInformationTiles.length);
 
   const changePage = (event) => {
     setPageNumber(event.selected);
   };
-  return (
-    <>
-      <Styled.GlobalStyle />
-      <Styled.Container>
-        <Styled.SearchButtonContainer>
-          <Styled.ModifiedSearchInput
-            placeholder="Search..."
-            onChange={(e) => setSearchValue(e.target.value)}
-          ></Styled.ModifiedSearchInput>
-        </Styled.SearchButtonContainer>
 
+  const formSubmit = (e) => {
+    e.preventDefault();
+    setSearchValue(inputValue);
+    setPageNumber(0);
+  };
+
+  console.log(pageNumber);
+  return (
+    <Styled.Container>
+      <Styled.GlobalStyle />
+      <Styled.SearchButtonContainer>
+        <form onSubmit={formSubmit}>
+          <label>
+            <Styled.ModifiedSearchInput
+              placeholder="Search..."
+              onChange={(e) => setInputValue(e.target.value)}
+            ></Styled.ModifiedSearchInput>
+          </label>
+        </form>
+      </Styled.SearchButtonContainer>
+
+      <Styled.TilesContainer>
         <Styled.CitiesTilesCardContainer>
           {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
         </Styled.CitiesTilesCardContainer>
-      </Styled.Container>
+      </Styled.TilesContainer>
+
       <Styled.PaginateContainer>
         <ReactPaginate
-          nextLabel={"Next"}
           pageCount={pageCount}
           onPageChange={changePage}
           containerClassName={"paginationContainer"}
-          previousLinkClassName={"previousButton"}
-          nextLinkClassName={"nextButton"}
-          disabledClassName={"paginationDisabled"}
           activeClassName={"paginationActive"}
+          forcePage={pageNumber}
         />
       </Styled.PaginateContainer>
-    </>
+    </Styled.Container>
   );
 };
 

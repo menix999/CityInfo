@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../styles/colors";
 
 export const SearchInput = styled.input`
   @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -13,8 +12,8 @@ export const SearchInput = styled.input`
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   box-shadow: -1px 0.5px 0.5px black;
-  color: ${colors.whiteText};
+  color: ${({ theme }) => theme.colors.whiteText};
   ::placeholder {
-    color: ${colors.whiteText};
+    color: ${({ theme }) => theme.colors.whiteText};
   }
 `;
