@@ -44,8 +44,6 @@ const Cities = () => {
     setSearchValue(inputValue);
     setPageNumber(0);
   };
-
-  console.log(pageNumber);
   return (
     <Styled.Container>
       <Styled.GlobalStyle />
