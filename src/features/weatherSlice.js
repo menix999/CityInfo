@@ -2,19 +2,19 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const weatherData = createAsyncThunk("", async (city) => {
-  const response = await axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9bde994ad95f9054cedb19e7637e49d8`
-  );
-  return response.data;
+  try {
+    const { data } = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=9bde994ad95f9054cedb19e7637e49d8`
+    );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 export const weatherApiSlice = createSlice({
   name: "weather",
-  initialState: {
-    weatherDetailDatabase: [],
-    status: null,
-    error: "",
-  },
+  initialState: {},
   reducers: {},
   extraReducers: {
     [weatherData.pending]: (state) => {

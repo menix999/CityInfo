@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiUrl, endpoint } from "../api/api";
 
-export const fetchSingleData = createAsyncThunk(
-  "singleTileDisplay/fetchSingleData",
-  async (id) => {
-    const response = await apiUrl.get(`${endpoint.cities}${id}`);
-    return response.data;
+export const fetchSingleData = createAsyncThunk("singleTileDisplay/fetchSingleData", async (id) => {
+  try {
+    const { data } = await apiUrl.get(`${endpoint.cities}${id}`);
+    return data;
+  } catch (err) {
+    console.log(err);
   }
-);
+});
 
 export const singleTileDisplaySLice = createSlice({
   name: "individualCity",
@@ -32,7 +33,6 @@ export const singleTileDisplaySLice = createSlice({
   },
 });
 
-export const cityDetailInformation = (state) =>
-  state.individualCity.individualCityInformation;
+export const cityDetailInformation = (state) => state.individualCity.individualCityInformation;
 
 export default singleTileDisplaySLice.reducer;
