@@ -45,19 +45,16 @@ const Cities = () => {
     setPageNumber(0);
   };
 
-  console.log(pageNumber);
   return (
     <Styled.Container>
       <Styled.GlobalStyle />
       <Styled.SearchButtonContainer>
-        <form onSubmit={formSubmit}>
-          <label>
-            <Styled.ModifiedSearchInput
-              placeholder="Search..."
-              onChange={(e) => setInputValue(e.target.value)}
-            ></Styled.ModifiedSearchInput>
-          </label>
-        </form>
+        <Styled.FormSubmit onSubmit={formSubmit}>
+          <Styled.ModifiedSearchInput
+            placeholder="Search..."
+            onChange={(e) => setInputValue(e.target.value)}
+          ></Styled.ModifiedSearchInput>
+        </Styled.FormSubmit>
       </Styled.SearchButtonContainer>
 
       <Styled.TilesContainer>

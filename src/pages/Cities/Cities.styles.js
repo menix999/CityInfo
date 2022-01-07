@@ -37,6 +37,8 @@ export const SearchButtonContainer = styled.div`
   height: 36px;
 `;
 
+export const FormSubmit = styled.form``;
+
 export const ModifiedSearchInput = styled(SearchInput)`
   background-color: ${({ theme }) => theme.colors.secondBackgroundButton};
 `;

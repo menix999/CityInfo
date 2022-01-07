@@ -9,6 +9,7 @@ import { weatherData, weatherDetailApi } from "../../features/weatherSlice";
 import { useHistory } from "react-router-dom";
 import arrow from "../../assets/images/ArrowGoBack.png";
 import Weather from "../../components/Weather/Weather";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 const SingleTileDisplay = () => {
   const [loader, setLoader] = useState(false);
@@ -62,7 +63,7 @@ const SingleTileDisplay = () => {
           </Styled.MainTileDown>
         </Styled.MainTileInformation>
       ) : (
-        "Loading..."
+        <LoadingScreen />
       )}
     </Styled.Container>
   );
