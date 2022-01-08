@@ -1,13 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { SearchInput } from "../../components/inputs/SearchInput.styles";
-import { createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${({ theme }) => theme.colors.backgroundMain};
-        color: ${({ theme }) => theme.colors.whiteText};
-    }
-`;
 
 export const load = keyframes`
   from {

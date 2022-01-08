@@ -1,13 +1,5 @@
 import styled from "styled-components";
 import { load } from "../Cities/Cities.styles";
-import { createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`
-    body {
-        background-color: ${({ theme }) => theme.colors.backgroundMain};
-        color: ${({ theme }) => theme.colors.whiteText};
-    }
-`;
 
 export const Container = styled.div`
   display: flex;

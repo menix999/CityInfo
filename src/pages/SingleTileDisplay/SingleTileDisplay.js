@@ -38,7 +38,6 @@ const SingleTileDisplay = () => {
 
   return (
     <Styled.Container>
-      <Styled.GlobalStyle />
       {loader ? (
         <Styled.MainTileInformation>
           <Styled.ContentSectionText>

@@ -50,7 +50,6 @@ const Cities = () => {
 
   return (
     <>
-      <Styled.GlobalStyle />
       {loader ? (
         <Styled.Container>
           <Styled.SearchButtonContainer>
