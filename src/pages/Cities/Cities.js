@@ -5,17 +5,20 @@ import { useEffect } from "react";
 import * as Styled from "./Cities.styles";
 import ReactPaginate from "react-paginate";
 import CityCards from "../../components/CityCards/CityCards";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 
 const Cities = () => {
   const [searchValue, setSearchValue] = useState("");
   const [pageNumber, setPageNumber] = useState(0);
   const [inputValue, setInputValue] = useState("");
+  const [loader, setLoader] = useState(false);
 
   const dispatch = useDispatch();
   const cityInformations = useSelector(citySingleName);
 
   useEffect(() => {
     dispatch(fetchData());
+    setLoader(true);
   }, [dispatch]);
 
   const tilesDiplayed = 9;
@@ -46,33 +49,39 @@ const Cities = () => {
   };
 
   return (
-    <Styled.Container>
+    <>
       <Styled.GlobalStyle />
-      <Styled.SearchButtonContainer>
-        <Styled.FormSubmit onSubmit={formSubmit}>
-          <Styled.ModifiedSearchInput
-            placeholder="Search..."
-            onChange={(e) => setInputValue(e.target.value)}
-          ></Styled.ModifiedSearchInput>
-        </Styled.FormSubmit>
-      </Styled.SearchButtonContainer>
+      {loader ? (
+        <Styled.Container>
+          <Styled.SearchButtonContainer>
+            <Styled.FormSubmit onSubmit={formSubmit}>
+              <Styled.ModifiedSearchInput
+                placeholder="Search..."
+                onChange={(e) => setInputValue(e.target.value)}
+              ></Styled.ModifiedSearchInput>
+            </Styled.FormSubmit>
+          </Styled.SearchButtonContainer>
 
-      <Styled.TilesContainer>
-        <Styled.CitiesTilesCardContainer>
-          {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
-        </Styled.CitiesTilesCardContainer>
-      </Styled.TilesContainer>
+          <Styled.TilesContainer>
+            <Styled.CitiesTilesCardContainer>
+              {cityInformationTiles.slice(pageVisited, pageVisited + tilesDiplayed)}
+            </Styled.CitiesTilesCardContainer>
+          </Styled.TilesContainer>
 
-      <Styled.PaginateContainer>
-        <ReactPaginate
-          pageCount={pageCount}
-          onPageChange={changePage}
-          containerClassName={"paginationContainer"}
-          activeClassName={"paginationActive"}
-          forcePage={pageNumber}
-        />
-      </Styled.PaginateContainer>
-    </Styled.Container>
+          <Styled.PaginateContainer>
+            <ReactPaginate
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationContainer"}
+              activeClassName={"paginationActive"}
+              forcePage={pageNumber}
+            />
+          </Styled.PaginateContainer>
+        </Styled.Container>
+      ) : (
+        <LoadingScreen />
+      )}
+    </>
   );
 };
 

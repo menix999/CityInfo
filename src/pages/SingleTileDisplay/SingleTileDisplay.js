@@ -38,21 +38,20 @@ const SingleTileDisplay = () => {
 
   return (
     <Styled.Container>
+      <Styled.GlobalStyle />
       {loader ? (
         <Styled.MainTileInformation>
-          <Styled.MainTileUp>
-            <Styled.ContentSection>
-              <Styled.CityPhoto src={images[id]} />
-              <Styled.ContentSectionText>
-                <Styled.Title>{detailIdInformation.Name}</Styled.Title>
-                <Styled.ArrowImage src={arrow} onClick={goBack} />
-                <Styled.CountryTitle>{detailIdInformation.Country}</Styled.CountryTitle>
-              </Styled.ContentSectionText>
-            </Styled.ContentSection>
-            <Styled.Description>{detailIdInformation.Description}</Styled.Description>
-          </Styled.MainTileUp>
+          <Styled.ContentSectionText>
+            <Styled.Title>{detailIdInformation.Name}</Styled.Title>
+            <Styled.ArrowImage src={arrow} onClick={goBack} />
+            <Styled.CountryTitle>{detailIdInformation.Country}</Styled.CountryTitle>
+          </Styled.ContentSectionText>
+          <Styled.PhotoContainer>
+            <Styled.CityPhoto src={images[id]} />
+          </Styled.PhotoContainer>
+          <Styled.Description>{detailIdInformation.Description}</Styled.Description>
 
-          <Styled.MainTileDown>
+          <Styled.WeatherContainer>
             <Weather
               icon={icon}
               temp={weather?.main.temp}
@@ -60,7 +59,7 @@ const SingleTileDisplay = () => {
               humidity={weather?.main.humidity}
               windSpeed={weather?.wind.speed}
             />
-          </Styled.MainTileDown>
+          </Styled.WeatherContainer>
         </Styled.MainTileInformation>
       ) : (
         <LoadingScreen />

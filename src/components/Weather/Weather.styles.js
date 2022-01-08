@@ -6,33 +6,17 @@ export const WeatherPhoto = styled.div`
   background-image: url(${weather});
   background-repeat: no-repeat;
   border-radius: 32px 32px 32px 32px;
-  @media (max-width: ${({ theme }) => theme.mediaQueries.tablet}) {
-    position: absolute;
-    width: 50vh;
-    height: 150px;
-    bottom: 0;
-  }
-  @media (max-width: ${({ theme }) => theme.mediaQueries.mobileS}) {
-    position: absolute;
-    width: 55vh;
-    height: 150px;
-    bottom: 0;
-  }
 `;
 
 export const WeatherContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  width: 30vh;
-  position: absolute;
-  @media (max-width: ${({ theme }) => theme.mediaQueries.tablet}) {
-    font-size: ${({ theme }) => theme.fontSize.m};
-    flex-direction: row;
-    justify-content: center;
-    bottom: 40px;
-  }
+  background-image: url(${weather});
+  border-radius: 32px;
+  width: 270px;
+  height: 420px;
+  margin-bottom: 10px;
 `;
 
 export const IconSpace = styled.div`

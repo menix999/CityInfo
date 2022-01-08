@@ -19,6 +19,11 @@ export const Loader = styled.div`
   height: 45px;
   border-radius: 50%;
   animation: ${loading} 1s infinite linear;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
 `;
 
 const LoadingScreen = () => {
