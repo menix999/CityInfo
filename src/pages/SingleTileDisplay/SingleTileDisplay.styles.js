@@ -65,10 +65,11 @@ export const ContentSectionText = styled.div`
   justify-content: center;
   height: 200px;
   width: 100%;
-  flex-grow: 1;
   flex-direction: column;
+  flex-grow: 1;
   @media (min-width: ${({ theme }) => theme.mediaQueries.laptop}) {
     width: 60%;
+    margin-bottom: 130px;
   }
 `;
 
@@ -104,4 +105,5 @@ export const Description = styled.h3`
   align-items: center;
   padding: 0 20px;
   text-shadow: 1px 1px #000;
+  flex-grow: 1;
 `;
