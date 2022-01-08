@@ -50,9 +50,9 @@ const Cities = () => {
 
   return (
     <>
-      <Styled.GlobalStyle />
       {loader ? (
         <Styled.Container>
+          <Styled.GlobalStyle />
           <Styled.SearchButtonContainer>
             <Styled.FormSubmit onSubmit={formSubmit}>
               <Styled.ModifiedSearchInput
